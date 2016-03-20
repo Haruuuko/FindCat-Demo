@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
+    <entity name="Cat" representedClassName="Cat" syncable="YES">
+        <attribute name="catName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="catNickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="initial" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="taggedLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="taggedCats" inverseEntity="Location" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="locationDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="photoID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="placemark" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="taggedCats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cat" inverseName="taggedLocations" inverseEntity="Cat" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cat" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Location" positionX="135" positionY="-9" width="128" height="150"/>
+    </elements>
+</model>
