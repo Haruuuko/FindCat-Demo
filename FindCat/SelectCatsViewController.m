@@ -9,8 +9,6 @@
 #import "SelectCatsViewController.h"
 #import "Cat.h"
 #import "SelectTableViewCell.h"
-#import "UIImage+Resize.h"
-#import "NSManagedObject+ManagePhoto.h"
 #import "NSManagedObjectContext+FetchRequest.h"
 
 @interface SelectCatsViewController ()<UISearchBarDelegate,UISearchResultsUpdating,UISearchControllerDelegate,NSFetchedResultsControllerDelegate>
@@ -104,14 +102,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"SelectCatList";
-    SelectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
-                                                            forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[SelectTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                     reuseIdentifier:cellIdentifier];
+    SelectTableViewCell *cell = [SelectTableViewCell initCellWithTableView:tableView];
+    
+    Cat *cat = nil;
+    if (self.searchController.active) {
+        cat = self.searchCats[indexPath.row];
+    }else{
+        cat = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
-    [self configureCell:cell atIndexPath:indexPath];
+    cell.cat = cat;
+    [cell chosenImageForCat:cat inCatsArray:self.chosenCats];
     return cell;
 }
 
@@ -178,34 +178,6 @@
             [self.searchCats addObject:cat];
         }
     }
-}
-
-- (void)configureCell:(SelectTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Cat *cat = nil;
-    // Configure the cell...
-    if (self.searchController.active) {
-        cat = self.searchCats[indexPath.row];
-    }else{
-        cat = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    }
-    if ([cat.catNickname isEqualToString:@""]) {
-        cell.nameOnlyLabel.text = cat.catName;
-        cell.nameOnlyLabel.font = [UIFont systemFontOfSize:18];
-        cell.nameLabel.text = nil;
-    }else{
-        cell.nameLabel.text = cat.catName;
-        cell.nameLabel.font = [UIFont systemFontOfSize:18];
-        cell.nameOnlyLabel.text = nil;
-    }
-    cell.nicknameLabel.text = cat.catNickname;
-    cell.nicknameLabel.textColor = [UIColor grayColor];
-    cell.nicknameLabel.font = [UIFont systemFontOfSize:14];
-    if ([cat hasPhotoAtIndex:cat.photoID]) {
-        cell.iconImageView.image = [[cat photoImageAtIndex:cat.photoID]resizedImageWithBounds:CGSizeMake(44, 44)];
-    }else{
-        cell.iconImageView.image = [UIImage imageNamed:@"catImage"];
-    }
-    [cell chosenImageForCat:cat inCatsArray:self.chosenCats];
 }
 
 @end

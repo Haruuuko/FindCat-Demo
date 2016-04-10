@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
     <entity name="Cat" representedClassName="Cat" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appearArea" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="catName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="catNickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="characteristic" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disability" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eyeClolor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hairColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hairPattern" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="iconImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="initial" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -18,7 +26,7 @@
         <relationship name="taggedCats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Cat" inverseName="taggedLocations" inverseEntity="Cat" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cat" positionX="-54" positionY="-9" width="128" height="135"/>
+        <element name="Cat" positionX="-54" positionY="-9" width="128" height="255"/>
         <element name="Location" positionX="135" positionY="-9" width="128" height="150"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  Cat+CoreDataProperties.m
 //  FindCat
 //
-//  Created by 王晴 on 16/3/17.
+//  Created by 王晴 on 16/4/9.
 //  Copyright © 2016年 王晴. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,11 +13,19 @@
 
 @implementation Cat (CoreDataProperties)
 
+@dynamic age;
+@dynamic appearArea;
 @dynamic catName;
 @dynamic catNickname;
+@dynamic characteristic;
+@dynamic disability;
+@dynamic gender;
+@dynamic hairColor;
+@dynamic hairPattern;
 @dynamic iconImage;
 @dynamic initial;
 @dynamic photoID;
+@dynamic eyeClolor;
 @dynamic taggedLocations;
 
 @end

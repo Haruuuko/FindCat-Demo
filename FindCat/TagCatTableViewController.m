@@ -133,9 +133,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 3) {
+    if (indexPath.section == 2) {
         [self.descriptionTextView becomeFirstResponder];
-    }else if (indexPath.section == 2){
+    }else if (indexPath.section == 0 && indexPath.row == 0){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         self.imagePicker = [[ImagePickerModel alloc]init];
         self.imagePicker.delegete = self;

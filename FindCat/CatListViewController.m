@@ -8,9 +8,8 @@
 
 #import "CatListViewController.h"
 #import "CatDetailViewController.h"
-#import "UIImage+Resize.h"
-#import "NSManagedObject+ManagePhoto.h"
 #import "NSManagedObjectContext+FetchRequest.h"
+#import "MyCatsTableViewCell.h"
 #import "Cat.h"
 
 @interface CatListViewController ()<UISearchBarDelegate,UISearchResultsUpdating,UISearchControllerDelegate,NSFetchedResultsControllerDelegate>
@@ -108,14 +107,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"CatList";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
-                                                            forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                     reuseIdentifier:cellIdentifier];
+    MyCatsTableViewCell *cell = [MyCatsTableViewCell initCellWithTableView:tableView];
+    
+    Cat *cat = nil;
+    if (self.searchController.active) {
+        cat = self.searchCats[indexPath.row];
+    }else{
+        cat = [self.fetchedResultsController objectAtIndexPath:indexPath];
     }
-    [self configureCell:cell atIndexPath:indexPath];
+    cell.cat = cat;
+    
     return cell;
 }
 
@@ -148,6 +149,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"ShowCat" sender:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -189,6 +191,7 @@
       newIndexPath:(NSIndexPath *)newIndexPath
 {
     UITableView *tableView = self.tableView;
+    MyCatsTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -200,7 +203,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            cell.cat = [self.fetchedResultsController objectAtIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -217,15 +220,10 @@
 
 #pragma mark - event response
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"AddCat"]) {
-        UINavigationController *navigationController = segue.destinationViewController;
-        AddCatTableViewController *controller = (AddCatTableViewController *)navigationController.topViewController;
-        controller.managedObjectContext = self.managedObjectContext;
-    }else if ([segue.identifier isEqualToString:@"ShowCat"]){
+    if ([segue.identifier isEqualToString:@"ShowCat"]){
         CatDetailViewController *controller = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSIndexPath *indexPath = sender;
         if (self.searchController.active) {
             controller.catDetail = self.searchCats[indexPath.row];
         }else{
@@ -239,29 +237,9 @@
 - (void)searchDataWithKeyWord:(NSString *)keyWord{
     self.searchCats = [NSMutableArray array];
     for (Cat *cat in self.catsInAll) {
-        if ([cat.catName containsString:keyWord] || [cat.catNickname containsString:keyWord]) {
+        if ([cat.catName containsString:keyWord]) {
             [self.searchCats addObject:cat];
         }
-    }
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    Cat *cat = nil;
-    // Configure the cell...
-    if (self.searchController.active) {
-        cat = self.searchCats[indexPath.row];
-    }else{
-        cat = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    }
-    cell.textLabel.text = cat.catName;
-    cell.textLabel.font = [UIFont systemFontOfSize:18];
-    cell.detailTextLabel.text = cat.catNickname;
-    cell.detailTextLabel.textColor = [UIColor grayColor];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-    if ([cat hasPhotoAtIndex:cat.photoID]) {
-        cell.imageView.image = [[cat photoImageAtIndex:cat.photoID]resizedImageWithBounds:CGSizeMake(44, 44)];
-    }else{
-        cell.imageView.image = [UIImage imageNamed:@"catImage"];
     }
 }
 

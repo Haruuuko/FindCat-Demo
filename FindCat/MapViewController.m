@@ -14,6 +14,7 @@
 #import "UIImage+Resize.h"
 #import "NSManagedObject+ManagePhoto.h"
 #import "NSManagedObjectContext+FetchRequest.h"
+#import "LocalCatsTableViewController.h"
 
 @interface MapViewController ()
 
@@ -225,6 +226,9 @@
         }        
         controller.location = self.updatingLocation;
         controller.managedObjectContext = self.managedObjectContext;
+    }else if ([segue.identifier isEqualToString:@"LocalCats"]){
+        LocalCatsTableViewController *catsController = (LocalCatsTableViewController *)segue.destinationViewController;
+        catsController.managedObjectContext = self.managedObjectContext;
     }
 }
 

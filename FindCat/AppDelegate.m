@@ -19,10 +19,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    UINavigationController *navigationController = tabBarController.viewControllers[1];
-    CatListViewController *catController = navigationController.viewControllers[0];
-    MapViewController *mapController = tabBarController.viewControllers[0];
-    
+    UINavigationController *mapNavigationController = tabBarController.viewControllers[0];
+    UINavigationController *catNavigationController = tabBarController.viewControllers[1];
+    MapViewController *mapController = mapNavigationController.viewControllers[0];
+    CatListViewController *catController = catNavigationController.viewControllers[0];
+
     catController.managedObjectContext = self.managedObjectContext;
     mapController.managedObjectContext = self.managedObjectContext;
     

@@ -29,7 +29,13 @@
 		F514D7601C782E6A00DADA02 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F514D75F1C782E6A00DADA02 /* MessageViewController.m */; };
 		F514D7661C7831E600DADA02 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F514D7631C7831E600DADA02 /* MainViewController.m */; };
 		F514D7671C7831E600DADA02 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F514D7651C7831E600DADA02 /* MainTabBar.m */; };
-		F5A9484A1C8AF26400394A41 /* SelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A948491C8AF26400394A41 /* SelectTableViewCell.m */; };
+		F586C7FF1CB9232300BB8B8A /* SelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C7FD1CB9232300BB8B8A /* SelectTableViewCell.m */; };
+		F586C8001CB9232300BB8B8A /* SelectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F586C7FE1CB9232300BB8B8A /* SelectTableViewCell.xib */; };
+		F586C8041CB9376400BB8B8A /* MyCatsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C8021CB9376400BB8B8A /* MyCatsTableViewCell.m */; };
+		F586C8051CB9376400BB8B8A /* MyCatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F586C8031CB9376400BB8B8A /* MyCatsTableViewCell.xib */; };
+		F586C8081CBA233C00BB8B8A /* LocalCatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C8071CBA233C00BB8B8A /* LocalCatsTableViewController.m */; };
+		F586C80C1CBA235B00BB8B8A /* LocalCatsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C80A1CBA235B00BB8B8A /* LocalCatsTableViewCell.m */; };
+		F586C80D1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F586C80B1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib */; };
 		F5A948D31C8FD60C00394A41 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A948D21C8FD60C00394A41 /* CoreData.framework */; };
 		F5A948D61C8FD64800394A41 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5A948D41C8FD64800394A41 /* DataModel.xcdatamodeld */; };
 		F5A948DE1C8FF1C600394A41 /* Cat+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A948DB1C8FF1C600394A41 /* Cat+CoreDataProperties.m */; };
@@ -103,8 +109,17 @@
 		F514D7631C7831E600DADA02 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../../weiboTest/weiboTest/MainViewController.m; sourceTree = "<group>"; };
 		F514D7641C7831E600DADA02 /* MainTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBar.h; path = ../../weiboTest/weiboTest/MainTabBar.h; sourceTree = "<group>"; };
 		F514D7651C7831E600DADA02 /* MainTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBar.m; path = ../../weiboTest/weiboTest/MainTabBar.m; sourceTree = "<group>"; };
-		F5A948481C8AF26400394A41 /* SelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTableViewCell.h; sourceTree = "<group>"; };
-		F5A948491C8AF26400394A41 /* SelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTableViewCell.m; sourceTree = "<group>"; };
+		F586C7FC1CB9232300BB8B8A /* SelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTableViewCell.h; sourceTree = "<group>"; };
+		F586C7FD1CB9232300BB8B8A /* SelectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTableViewCell.m; sourceTree = "<group>"; };
+		F586C7FE1CB9232300BB8B8A /* SelectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectTableViewCell.xib; sourceTree = "<group>"; };
+		F586C8011CB9376400BB8B8A /* MyCatsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCatsTableViewCell.h; sourceTree = "<group>"; };
+		F586C8021CB9376400BB8B8A /* MyCatsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCatsTableViewCell.m; sourceTree = "<group>"; };
+		F586C8031CB9376400BB8B8A /* MyCatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCatsTableViewCell.xib; sourceTree = "<group>"; };
+		F586C8061CBA233C00BB8B8A /* LocalCatsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCatsTableViewController.h; sourceTree = "<group>"; };
+		F586C8071CBA233C00BB8B8A /* LocalCatsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCatsTableViewController.m; sourceTree = "<group>"; };
+		F586C8091CBA235B00BB8B8A /* LocalCatsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalCatsTableViewCell.h; sourceTree = "<group>"; };
+		F586C80A1CBA235B00BB8B8A /* LocalCatsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalCatsTableViewCell.m; sourceTree = "<group>"; };
+		F586C80B1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalCatsTableViewCell.xib; sourceTree = "<group>"; };
 		F5A948D21C8FD60C00394A41 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F5A948D51C8FD64800394A41 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F5A948DA1C8FF1C600394A41 /* Cat+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cat+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -239,12 +254,19 @@
 		F514D68E1C6F180100DADA02 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F514D6EB1C74A84E00DADA02 /* UserInformation.h */,
-				F514D6EC1C74A84E00DADA02 /* UserInformation.m */,
-				F5A948481C8AF26400394A41 /* SelectTableViewCell.h */,
-				F5A948491C8AF26400394A41 /* SelectTableViewCell.m */,
 				F514D7641C7831E600DADA02 /* MainTabBar.h */,
 				F514D7651C7831E600DADA02 /* MainTabBar.m */,
+				F586C7FC1CB9232300BB8B8A /* SelectTableViewCell.h */,
+				F586C7FD1CB9232300BB8B8A /* SelectTableViewCell.m */,
+				F586C7FE1CB9232300BB8B8A /* SelectTableViewCell.xib */,
+				F586C8011CB9376400BB8B8A /* MyCatsTableViewCell.h */,
+				F586C8021CB9376400BB8B8A /* MyCatsTableViewCell.m */,
+				F586C8031CB9376400BB8B8A /* MyCatsTableViewCell.xib */,
+				F586C8091CBA235B00BB8B8A /* LocalCatsTableViewCell.h */,
+				F586C80A1CBA235B00BB8B8A /* LocalCatsTableViewCell.m */,
+				F586C80B1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib */,
+				F514D6EB1C74A84E00DADA02 /* UserInformation.h */,
+				F514D6EC1C74A84E00DADA02 /* UserInformation.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -258,6 +280,8 @@
 				F514D6441C65DDBE00DADA02 /* TagCatTableViewController.m */,
 				F514D6D91C719EA900DADA02 /* SelectCatsViewController.h */,
 				F514D6DA1C719EA900DADA02 /* SelectCatsViewController.m */,
+				F586C8061CBA233C00BB8B8A /* LocalCatsTableViewController.h */,
+				F586C8071CBA233C00BB8B8A /* LocalCatsTableViewController.m */,
 			);
 			name = MapLocationController;
 			sourceTree = "<group>";
@@ -426,8 +450,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F514D6161C64910E00DADA02 /* LaunchScreen.storyboard in Resources */,
+				F586C8051CB9376400BB8B8A /* MyCatsTableViewCell.xib in Resources */,
 				F514D6131C64910E00DADA02 /* Assets.xcassets in Resources */,
 				F514D6111C64910E00DADA02 /* Main.storyboard in Resources */,
+				F586C80D1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib in Resources */,
+				F586C8001CB9232300BB8B8A /* SelectTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,13 +480,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A948EA1C9AE8BA00394A41 /* UIImage+Resize.m in Sources */,
+				F586C80C1CBA235B00BB8B8A /* LocalCatsTableViewCell.m in Sources */,
 				F5A948F91C9E653F00394A41 /* ImagePickerModel.m in Sources */,
+				F586C8081CBA233C00BB8B8A /* LocalCatsTableViewController.m in Sources */,
 				F5A948F31C9D47E100394A41 /* NSManagedObjectContext+FetchRequest.m in Sources */,
 				F514D63F1C6595B000DADA02 /* WGS84TOGCJ02.m in Sources */,
 				F514D6081C64910E00DADA02 /* AppDelegate.m in Sources */,
 				F514D7671C7831E600DADA02 /* MainTabBar.m in Sources */,
 				F514D6ED1C74A84E00DADA02 /* UserInformation.m in Sources */,
 				F514D60B1C64910E00DADA02 /* MapViewController.m in Sources */,
+				F586C8041CB9376400BB8B8A /* MyCatsTableViewCell.m in Sources */,
 				F514D6F71C773CB100DADA02 /* NSString+PinYin.m in Sources */,
 				F514D6451C65DDBE00DADA02 /* TagCatTableViewController.m in Sources */,
 				F5A948ED1C9D300D00394A41 /* NSDate+FormatDate.m in Sources */,
@@ -468,7 +498,6 @@
 				F5A948F01C9D343C00394A41 /* NSManagedObject+ManagePhoto.m in Sources */,
 				F514D6051C64910E00DADA02 /* main.m in Sources */,
 				F514D6E11C71A62700DADA02 /* ProfileViewController.m in Sources */,
-				F5A9484A1C8AF26400394A41 /* SelectTableViewCell.m in Sources */,
 				F5A948DF1C8FF1C600394A41 /* Cat.m in Sources */,
 				F5A948E61C9045FD00394A41 /* Location.m in Sources */,
 				F514D7661C7831E600DADA02 /* MainViewController.m in Sources */,
@@ -478,6 +507,7 @@
 				F514D7601C782E6A00DADA02 /* MessageViewController.m in Sources */,
 				F514D6F01C74CD8D00DADA02 /* CatDetailViewController.m in Sources */,
 				F514D6DB1C719EA900DADA02 /* SelectCatsViewController.m in Sources */,
+				F586C7FF1CB9232300BB8B8A /* SelectTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

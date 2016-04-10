@@ -2,7 +2,7 @@
 //  SelectTableViewCell.h
 //  FindCat
 //
-//  Created by 王晴 on 16/3/5.
+//  Created by 王晴 on 16/4/9.
 //  Copyright © 2016年 王晴. All rights reserved.
 //
 
@@ -11,12 +11,9 @@
 
 @interface SelectTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *nameOnlyLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *chosenImageView;
+@property (strong, nonatomic) Cat *cat;
 
++(instancetype)initCellWithTableView:(UITableView *)tableView;
 - (void)chosenImageForCat:(Cat *)cat inCatsArray:(NSMutableArray *)cats;
 
 @end

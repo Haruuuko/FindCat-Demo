@@ -13,8 +13,6 @@
 @interface CatDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *catName;
-@property (weak, nonatomic) IBOutlet UILabel *catNickname;
-@property (weak, nonatomic) IBOutlet UILabel *tagNumber;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
@@ -26,8 +24,6 @@
 - (void)refreshData{
     self.title = self.catDetail.catName;
     self.catName.text = self.catDetail.catName;
-    self.catNickname.text = self.catDetail.catNickname;
-    self.tagNumber.text = [NSString stringWithFormat:@"%lu",self.catDetail.taggedLocations.count];
     if ([self.catDetail hasPhotoAtIndex:self.catDetail.photoID]) {
         NSLog(@"TAG  %@",[self.catDetail photoPathAtIndex:self.catDetail.photoID]);
         UIImage *existingImage = [self.catDetail photoImageAtIndex:self.catDetail.photoID];
@@ -60,6 +56,9 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0.001;
+    }
     return 30;
 }
 

@@ -17,7 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 @property (weak, nonatomic) IBOutlet UITextField *catName;
-@property (weak, nonatomic) IBOutlet UITextField *catNickname;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (strong, nonatomic) UIImage *image;
@@ -45,7 +44,6 @@
     if (self.editCat != nil) {
         self.title = @"Edit Cat";
         self.catName.text = self.editCat.catName;
-        self.catNickname.text = self.editCat.catNickname;
         self.doneButton.enabled = YES;
         if ([self.editCat hasPhotoAtIndex:self.editCat.photoID]) {
             UIImage *existingImage = [self.editCat photoImageAtIndex:self.editCat.photoID];
@@ -71,12 +69,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.row == 0) {
-        [self.catName becomeFirstResponder];
     }else if (indexPath.section == 0 && indexPath.row == 1){
-        [self.catNickname becomeFirstResponder];
-    }else if (indexPath.section == 1){
+        [self.catName becomeFirstResponder];
+    }else if (indexPath.section == 2){
         [self.catName resignFirstResponder];
-        [self.catNickname resignFirstResponder];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         self.imagePicker = [[ImagePickerModel alloc]init];
         self.imagePicker.delegete = self;
@@ -112,7 +108,6 @@
     if (self.editCat == nil) {  
         Cat *cat = [NSEntityDescription insertNewObjectForEntityForName:@"Cat" inManagedObjectContext:self.managedObjectContext];
         cat.catName = self.catName.text;
-        cat.catNickname = self.catNickname.text;
         cat.initial = [self.catName.text getFirstLetter];
         cat.photoID = @-1;
         [self savePhotoToLocation:cat];
@@ -124,7 +119,6 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         self.editCat.catName = self.catName.text;
-        self.editCat.catNickname = self.catNickname.text;
         self.editCat.initial = [self.catName.text getFirstLetter];
         [self savePhotoToLocation:self.editCat];
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -152,7 +146,6 @@
         self.imagePicker = nil;
     }
     [self.catName resignFirstResponder];
-    [self.catNickname resignFirstResponder];
 }
 
 @end
