@@ -10,11 +10,12 @@
 #import "TagCatTableViewController.h"
 #import "Location.h"
 #import "Cat.h"
+#import "CalloutAnnotationView.h"
+#import "CalloutCell.h"
 #import "WGS84TOGCJ02.h"
-#import "UIImage+Resize.h"
-#import "NSManagedObject+ManagePhoto.h"
 #import "NSManagedObjectContext+FetchRequest.h"
 #import "LocalCatsTableViewController.h"
+#import "CalloutMapAnnotation.h"
 
 @interface MapViewController ()
 
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) MKAnnotationView *userLocationView;
 @property (strong, nonatomic) NSArray *locationsInAll;
+@property (strong, nonatomic) CalloutMapAnnotation *calloutAnnotation;
 
 @end
 
@@ -82,7 +84,7 @@
     }
 }
 
-- (void)updateLocations{
+- (void)updateLocations {
     if (self.locationsInAll != nil) {
         [self.mapView removeAnnotations:self.locationsInAll];
     }
@@ -107,6 +109,13 @@
         [self.locationManager startUpdatingHeading];
     }
     [self updateLocations];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if (self.calloutAnnotation) {
+        [self.mapView removeAnnotation:self.calloutAnnotation];
+        self.calloutAnnotation = nil;
+    }
 }
 
 - (void)dealloc {
@@ -158,9 +167,24 @@
         //use a custom image for the user annotation
         self.userLocationView.image = [UIImage imageNamed:@"userLocationArrow"];
         return self.userLocationView;
-    }
-    if ([annotation isKindOfClass:[Location class]]) {
-        Location *location = (Location *)annotation;
+        
+    }else if ([annotation isKindOfClass:[CalloutMapAnnotation class]]) {
+        CalloutMapAnnotation *location = (CalloutMapAnnotation *)annotation;
+        static NSString *selectAnnotationIdentifier = @"CatAnnotationIdentifier2";
+        CalloutAnnotationView *annotationView = (CalloutAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:selectAnnotationIdentifier];
+        
+        if (!annotationView) {
+            annotationView = [[CalloutAnnotationView alloc]initWithAnnotation:annotation
+                                                         reuseIdentifier:selectAnnotationIdentifier];
+        }else{
+            annotationView.annotation = annotation;
+        }
+        annotationView.locationTagView.location = location.location;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLocationDetails)];
+        [annotationView addGestureRecognizer:tapGesture];
+        return annotationView;
+        
+    }else if ([annotation isKindOfClass:[Location class]]){
         static NSString *catAnnotationIdentifier = @"CatAnnotationIdentifier";
         MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:catAnnotationIdentifier];
         
@@ -169,28 +193,12 @@
                                                   reuseIdentifier:catAnnotationIdentifier];
             
             UIImage *pinImage = [UIImage imageNamed:@"catPin"];
-            UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [detailButton addTarget:self action:@selector(showLocationDetails:) forControlEvents:UIControlEventTouchUpInside];
-            
             annotationView.image = pinImage;
             annotationView.centerOffset = CGPointMake(0, -20);
-            annotationView.canShowCallout = YES;
-            annotationView.rightCalloutAccessoryView = detailButton;
+            annotationView.canShowCallout = NO;
         }else{
             annotationView.annotation = annotation;
         }
-        
-        UIImageView *leftView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-        if ([location hasPhotoAtIndex:location.photoID]) {
-            leftView.image = [[location photoImageAtIndex:location.photoID]resizedImageWithBounds:CGSizeMake(44, 44)];
-        }else{
-            leftView.image = [UIImage imageNamed:@"catImage"];
-            leftView.contentMode = UIViewContentModeScaleAspectFit;
-        }
-        annotationView.leftCalloutAccessoryView = leftView;
-        
-        UIButton *button = (UIButton *)annotationView.rightCalloutAccessoryView;
-        button.tag = [self.locationsInAll indexOfObject:annotation];
         return annotationView;
     }
     return nil;
@@ -199,31 +207,46 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     if ([view.annotation isKindOfClass:[Location class]]) {
         view.image = [UIImage imageNamed:@"catPinTouch"];
+        if (self.calloutAnnotation.latitude == view.annotation.coordinate.latitude&&
+            self.calloutAnnotation.longitude == view.annotation.coordinate.longitude) {
+            return;
+        }
+        if (self.calloutAnnotation) {
+            [mapView removeAnnotation:self.calloutAnnotation];
+            self.calloutAnnotation=nil;
+        }
+        self.calloutAnnotation = [[CalloutMapAnnotation alloc]initWithLatitude:view.annotation.coordinate.latitude
+                                                                  andLongitude:view.annotation.coordinate.longitude];
+        self.calloutAnnotation.location = view.annotation;
+        [mapView addAnnotation:self.calloutAnnotation];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
     if ([view.annotation isKindOfClass:[Location class]]) {
         view.image = [UIImage imageNamed:@"catPin"];
+        if (self.calloutAnnotation && !self.calloutAnnotation.preventSelectionChange) {
+            if (self.calloutAnnotation.coordinate.latitude == view.annotation.coordinate.latitude&&
+                self.calloutAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
+                [mapView removeAnnotation:self.calloutAnnotation];
+                self.calloutAnnotation = nil;
+            }
+        }
     }
 }
 
 #pragma mark - event response
 
-- (void)showLocationDetails:(UIButton *)button{
-    [self performSegueWithIdentifier:@"TagCat" sender:button];
+- (void)showLocationDetails{
+    self.calloutAnnotation.preventSelectionChange = YES;
+    [self performSegueWithIdentifier:@"TagCat" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"TagCat"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         TagCatTableViewController *controller = (TagCatTableViewController *)navigationController.topViewController;
-        //判断是否点击大头针
-        UIButton *button = (UIButton *)sender;
-        if (button.buttonType == UIButtonTypeDetailDisclosure) {
-            Location *location = self.locationsInAll[button.tag];
-            controller.tagDetail = location;
-        }        
+        controller.tagDetail = self.calloutAnnotation.location;
         controller.location = self.updatingLocation;
         controller.managedObjectContext = self.managedObjectContext;
     }else if ([segue.identifier isEqualToString:@"LocalCats"]){
