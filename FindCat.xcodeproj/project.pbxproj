@@ -40,6 +40,8 @@
 		F586C8161CBA38D300BB8B8A /* CalloutAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C8151CBA38D300BB8B8A /* CalloutAnnotationView.m */; };
 		F586C8181CBA482100BB8B8A /* CalloutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F586C8171CBA482100BB8B8A /* CalloutCell.xib */; };
 		F586C81B1CBA8E9500BB8B8A /* CalloutMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C81A1CBA8E9500BB8B8A /* CalloutMapAnnotation.m */; };
+		F586C81E1CBD25EC00BB8B8A /* PickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C81D1CBD25EC00BB8B8A /* PickerViewModel.m */; };
+		F586C8271CBE0ACB00BB8B8A /* MultiPickerViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F586C8261CBE0ACB00BB8B8A /* MultiPickerViewModel.m */; };
 		F5A948D31C8FD60C00394A41 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A948D21C8FD60C00394A41 /* CoreData.framework */; };
 		F5A948D61C8FD64800394A41 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5A948D41C8FD64800394A41 /* DataModel.xcdatamodeld */; };
 		F5A948DE1C8FF1C600394A41 /* Cat+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A948DB1C8FF1C600394A41 /* Cat+CoreDataProperties.m */; };
@@ -131,6 +133,10 @@
 		F586C8171CBA482100BB8B8A /* CalloutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutCell.xib; sourceTree = "<group>"; };
 		F586C8191CBA8E9500BB8B8A /* CalloutMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalloutMapAnnotation.h; sourceTree = "<group>"; };
 		F586C81A1CBA8E9500BB8B8A /* CalloutMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalloutMapAnnotation.m; sourceTree = "<group>"; };
+		F586C81C1CBD25EC00BB8B8A /* PickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewModel.h; sourceTree = "<group>"; };
+		F586C81D1CBD25EC00BB8B8A /* PickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewModel.m; sourceTree = "<group>"; };
+		F586C8251CBE0ACB00BB8B8A /* MultiPickerViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiPickerViewModel.h; sourceTree = "<group>"; };
+		F586C8261CBE0ACB00BB8B8A /* MultiPickerViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiPickerViewModel.m; sourceTree = "<group>"; };
 		F5A948D21C8FD60C00394A41 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F5A948D51C8FD64800394A41 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		F5A948DA1C8FF1C600394A41 /* Cat+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cat+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -228,8 +234,6 @@
 			children = (
 				F514D63D1C6595B000DADA02 /* WGS84TOGCJ02.h */,
 				F514D63E1C6595B000DADA02 /* WGS84TOGCJ02.m */,
-				F5A948F71C9E653F00394A41 /* ImagePickerModel.h */,
-				F5A948F81C9E653F00394A41 /* ImagePickerModel.m */,
 				F514D6F51C773CB100DADA02 /* NSString+PinYin.h */,
 				F514D6F61C773CB100DADA02 /* NSString+PinYin.m */,
 				F5A948E81C9AE8BA00394A41 /* UIImage+Resize.h */,
@@ -267,22 +271,10 @@
 			children = (
 				F514D7641C7831E600DADA02 /* MainTabBar.h */,
 				F514D7651C7831E600DADA02 /* MainTabBar.m */,
-				F586C8141CBA38D300BB8B8A /* CalloutAnnotationView.h */,
-				F586C8151CBA38D300BB8B8A /* CalloutAnnotationView.m */,
-				F586C8111CBA38B600BB8B8A /* CalloutCell.h */,
-				F586C8121CBA38B600BB8B8A /* CalloutCell.m */,
-				F586C8171CBA482100BB8B8A /* CalloutCell.xib */,
-				F586C7FC1CB9232300BB8B8A /* SelectTableViewCell.h */,
-				F586C7FD1CB9232300BB8B8A /* SelectTableViewCell.m */,
-				F586C7FE1CB9232300BB8B8A /* SelectTableViewCell.xib */,
-				F586C8011CB9376400BB8B8A /* MyCatsTableViewCell.h */,
-				F586C8021CB9376400BB8B8A /* MyCatsTableViewCell.m */,
-				F586C8031CB9376400BB8B8A /* MyCatsTableViewCell.xib */,
-				F586C8091CBA235B00BB8B8A /* LocalCatsTableViewCell.h */,
-				F586C80A1CBA235B00BB8B8A /* LocalCatsTableViewCell.m */,
-				F586C80B1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib */,
 				F514D6EB1C74A84E00DADA02 /* UserInformation.h */,
 				F514D6EC1C74A84E00DADA02 /* UserInformation.m */,
+				F586C8291CBF503E00BB8B8A /* PickerView */,
+				F586C8281CBF500A00BB8B8A /* TableViewCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -331,6 +323,40 @@
 				F514D75F1C782E6A00DADA02 /* MessageViewController.m */,
 			);
 			name = MessageController;
+			sourceTree = "<group>";
+		};
+		F586C8281CBF500A00BB8B8A /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				F586C8141CBA38D300BB8B8A /* CalloutAnnotationView.h */,
+				F586C8151CBA38D300BB8B8A /* CalloutAnnotationView.m */,
+				F586C8111CBA38B600BB8B8A /* CalloutCell.h */,
+				F586C8121CBA38B600BB8B8A /* CalloutCell.m */,
+				F586C8171CBA482100BB8B8A /* CalloutCell.xib */,
+				F586C7FC1CB9232300BB8B8A /* SelectTableViewCell.h */,
+				F586C7FD1CB9232300BB8B8A /* SelectTableViewCell.m */,
+				F586C7FE1CB9232300BB8B8A /* SelectTableViewCell.xib */,
+				F586C8011CB9376400BB8B8A /* MyCatsTableViewCell.h */,
+				F586C8021CB9376400BB8B8A /* MyCatsTableViewCell.m */,
+				F586C8031CB9376400BB8B8A /* MyCatsTableViewCell.xib */,
+				F586C8091CBA235B00BB8B8A /* LocalCatsTableViewCell.h */,
+				F586C80A1CBA235B00BB8B8A /* LocalCatsTableViewCell.m */,
+				F586C80B1CBA235B00BB8B8A /* LocalCatsTableViewCell.xib */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		F586C8291CBF503E00BB8B8A /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				F5A948F71C9E653F00394A41 /* ImagePickerModel.h */,
+				F5A948F81C9E653F00394A41 /* ImagePickerModel.m */,
+				F586C81C1CBD25EC00BB8B8A /* PickerViewModel.h */,
+				F586C81D1CBD25EC00BB8B8A /* PickerViewModel.m */,
+				F586C8251CBE0ACB00BB8B8A /* MultiPickerViewModel.h */,
+				F586C8261CBE0ACB00BB8B8A /* MultiPickerViewModel.m */,
+			);
+			name = PickerView;
 			sourceTree = "<group>";
 		};
 		F5A948E01C8FF25800394A41 /* DataModel */ = {
@@ -502,8 +528,10 @@
 				F586C80C1CBA235B00BB8B8A /* LocalCatsTableViewCell.m in Sources */,
 				F5A948F91C9E653F00394A41 /* ImagePickerModel.m in Sources */,
 				F586C8081CBA233C00BB8B8A /* LocalCatsTableViewController.m in Sources */,
+				F586C81E1CBD25EC00BB8B8A /* PickerViewModel.m in Sources */,
 				F586C8131CBA38B600BB8B8A /* CalloutCell.m in Sources */,
 				F5A948F31C9D47E100394A41 /* NSManagedObjectContext+FetchRequest.m in Sources */,
+				F586C8271CBE0ACB00BB8B8A /* MultiPickerViewModel.m in Sources */,
 				F514D63F1C6595B000DADA02 /* WGS84TOGCJ02.m in Sources */,
 				F514D6081C64910E00DADA02 /* AppDelegate.m in Sources */,
 				F586C8161CBA38D300BB8B8A /* CalloutAnnotationView.m in Sources */,

@@ -27,10 +27,6 @@
     return self;
 }
 
-- (void)showLocationDetails{
-    NSLog(@"showLocationDetails");
-}
-
 -(void)drawRect:(CGRect)rect{
     [self drawInContext:UIGraphicsGetCurrentContext()];
     

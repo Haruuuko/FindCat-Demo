@@ -174,7 +174,7 @@
 - (void)searchDataWithKeyWord:(NSString *)keyWord{
     self.searchCats = [NSMutableArray array];
     for (Cat *cat in self.catsInAll) {
-        if ([cat.catName containsString:keyWord] || [cat.catNickname containsString:keyWord]) {
+        if ([cat.catName containsString:keyWord]) {
             [self.searchCats addObject:cat];
         }
     }

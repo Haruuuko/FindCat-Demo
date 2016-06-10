@@ -29,6 +29,12 @@
     }else{
         self.iconImage.image = [UIImage imageNamed:@"catImage"];
     }
+    if ([cat.gender isEqualToString:@"母"]) {
+        self.genderImage.image = [UIImage imageNamed:@"female"];
+    }else{
+        self.genderImage.image = [UIImage imageNamed:@"male"];
+    }
+    self.ageLabel.text = cat.age;
 }
 
 +(instancetype)initCellWithTableView:(UITableView *)tableView{

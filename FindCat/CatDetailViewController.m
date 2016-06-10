@@ -13,6 +13,11 @@
 @interface CatDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *catName;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet UIImageView *genderImage;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *characterLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
@@ -31,6 +36,14 @@
             self.imageView.image = existingImage;
         }
     }
+    if ([self.catDetail.gender isEqualToString:@"母"]) {
+        self.genderImage.image = [UIImage imageNamed:@"female"];
+    }else{
+        self.genderImage.image = [UIImage imageNamed:@"male"];
+    }
+    self.ageLabel.text = self.catDetail.age;
+    self.characterLabel.text = [NSString stringWithFormat:@"%@ %@   %@",self.catDetail.hairColor, self.catDetail.hairPattern, self.catDetail.characteristic];
+    self.locationLabel.text = self.catDetail.appearArea;
 }
 
 #pragma mark - life cycle

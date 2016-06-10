@@ -38,7 +38,7 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male" translatesAutoresizingMaskIntoConstraints="NO" id="Jgz-y5-MUt">
-                        <rect key="frame" x="146" y="26" width="14" height="14"/>
+                        <rect key="frame" x="146" y="26.5" width="14" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="ilT-fi-oA0"/>
                         </constraints>
@@ -92,7 +92,7 @@
     </objects>
     <resources>
         <image name="catImage" width="31" height="24"/>
-        <image name="male" width="13" height="14"/>
+        <image name="male" width="13" height="13"/>
         <image name="unchosen" width="22" height="22"/>
     </resources>
 </document>

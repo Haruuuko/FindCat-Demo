@@ -136,16 +136,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     if (locations != nil && locations.count > 0) {
         self.updatingLocation = [locations lastObject];
-        
-        //检查坐标是否在中国境内，并从WGS坐标系转为GCJ坐标系
-        if (![WGS84TOGCJ02 isLocationOutOfChina:self.updatingLocation.coordinate]) {
-            CLLocationCoordinate2D coordinateInGCJ = [WGS84TOGCJ02 transformFromWGSToGCJ:self.updatingLocation.coordinate];
-            NSLog(@"%f, %f",coordinateInGCJ.latitude, coordinateInGCJ.longitude);
-        
-            MKCoordinateSpan span = MKCoordinateSpanMake(0.01,0.01);
-            MKCoordinateRegion region = MKCoordinateRegionMake(coordinateInGCJ, span);
-            [self.mapView setRegion:region animated:NO];
-        }
+        [self setMapCenterAtUserLocation];
     }
 }
 
@@ -219,23 +210,30 @@
                                                                   andLongitude:view.annotation.coordinate.longitude];
         self.calloutAnnotation.location = view.annotation;
         [mapView addAnnotation:self.calloutAnnotation];
+        [mapView setCenterCoordinate:self.calloutAnnotation.coordinate animated:YES];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
-    if ([view.annotation isKindOfClass:[Location class]]) {
-        view.image = [UIImage imageNamed:@"catPin"];
-        if (self.calloutAnnotation && !self.calloutAnnotation.preventSelectionChange) {
-            if (self.calloutAnnotation.coordinate.latitude == view.annotation.coordinate.latitude&&
-                self.calloutAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
-                [mapView removeAnnotation:self.calloutAnnotation];
-                self.calloutAnnotation = nil;
-            }
-        }
+    if (![view.annotation isKindOfClass:[Location class]]) {
+        return;
+    }
+    view.image = [UIImage imageNamed:@"catPin"];
+    if (!self.calloutAnnotation || self.calloutAnnotation.preventSelectionChange) {
+        return;
+    }
+    if (self.calloutAnnotation.coordinate.latitude == view.annotation.coordinate.latitude&&
+        self.calloutAnnotation.coordinate.longitude == view.annotation.coordinate.longitude) {
+        [mapView removeAnnotation:self.calloutAnnotation];
+        self.calloutAnnotation = nil;
     }
 }
 
 #pragma mark - event response
+
+- (IBAction)relocateMapRegion {
+    [self setMapCenterAtUserLocation];
+}
 
 - (void)showLocationDetails{
     self.calloutAnnotation.preventSelectionChange = YES;
@@ -253,6 +251,19 @@
         LocalCatsTableViewController *catsController = (LocalCatsTableViewController *)segue.destinationViewController;
         catsController.managedObjectContext = self.managedObjectContext;
     }
+}
+
+#pragma mark - private method
+
+- (void)setMapCenterAtUserLocation{
+    CLLocationCoordinate2D coordinate = self.updatingLocation.coordinate;
+    if (![WGS84TOGCJ02 isLocationOutOfChina:self.updatingLocation.coordinate]) {
+        coordinate = [WGS84TOGCJ02 transformFromWGSToGCJ:self.updatingLocation.coordinate];
+    }
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01,0.01);
+    MKCoordinateRegion region = MKCoordinateRegionMake(coordinate, span);
+    [self.mapView setRegion:region animated:YES];
+    NSLog(@"%f, %f",coordinate.latitude, coordinate.longitude);
 }
 
 @end

@@ -43,16 +43,15 @@
     }else{
         self.iconImage.image = [UIImage imageNamed:@"catImage"];
     }
-
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        // Initialization code
+//    }
+//    return self;
+//}
 
 @end

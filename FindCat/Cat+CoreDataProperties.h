@@ -2,7 +2,7 @@
 //  Cat+CoreDataProperties.h
 //  FindCat
 //
-//  Created by 王晴 on 16/4/9.
+//  Created by 王晴 on 16/4/13.
 //  Copyright © 2016年 王晴. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *age;
 @property (nullable, nonatomic, retain) NSString *appearArea;
 @property (nullable, nonatomic, retain) NSString *catName;
-@property (nullable, nonatomic, retain) NSString *catNickname;
 @property (nullable, nonatomic, retain) NSString *characteristic;
 @property (nullable, nonatomic, retain) NSString *disability;
 @property (nullable, nonatomic, retain) NSString *gender;
@@ -29,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *iconImage;
 @property (nullable, nonatomic, retain) NSString *initial;
 @property (nullable, nonatomic, retain) NSNumber *photoID;
-@property (nullable, nonatomic, retain) NSString *eyeClolor;
 @property (nullable, nonatomic, retain) NSSet<Location *> *taggedLocations;
 
 @end

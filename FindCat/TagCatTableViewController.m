@@ -57,12 +57,14 @@
 }
 
 - (void)setupLabels{
+    if (self.tagDetail) {
+        self.title = @"查看标记";
+        self.navigationItem.leftBarButtonItem.title = @"返回";
+    }
     if(self.tagDetail.taggedCats.count > 0) {
-        NSMutableString *cats = [[NSMutableString alloc]init];
-        for (Cat *cat in self.tagDetail.taggedCats) {
-            [self.catsMember addObject:cat];
-            [cats appendString:[NSString stringWithFormat:@"%@ ", cat.catName]];
-        }
+        NSString *cats = [[NSMutableString alloc]init];
+        self.catsMember = [NSMutableArray arrayWithArray:[self.tagDetail.taggedCats allObjects]];
+        cats = [self.catsMember componentsJoinedByString:@" "];
         self.catsLabel.text = cats;
     }
     
